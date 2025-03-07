@@ -1,0 +1,215 @@
+/* Estilos globais */
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;     
+}
+
+/* estilo do formulário */
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-image: url('https://cdn.pixabay.com/photo/2024/05/30/08/48/pattern-8798134_1280.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+#to_do {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    background-color: #e4e0ff;
+    padding: 18px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    width: 430px;
+}
+
+#to_do h1 {
+    text-align: center;
+    color: #333;
+    font-size: 28px;
+    text-transform: uppercase;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+}
+
+.form input {
+    background-color: transparent;
+    border: none;  
+    color: #333;
+    font-size: 16px; 
+    width: 100%;
+    padding: 4px;
+    border-bottom:2px solid #09246c;
+}
+
+.form input:focus-visible {
+    outline: none;
+}
+
+.form .form-button {
+    background-color: #09246c;
+    border: none;
+    color: #e4e0ff;
+    min-width: 35px;
+    min-height: 35px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: scale 0.3s ease-in-out;
+}
+
+.form .form-button:hover {
+    background-color: #0c3a8b;
+    cursor: pointer;
+    scale: 1.1;
+}
+
+/* estilo da lista de tarefas */
+
+#tasks {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.task {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr) 5px;
+    gap: 5px;
+    color: #000000;
+    background-color: #e9e5ff;
+    padding: 8px 12px; 
+    border-radius: 4px;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.2);
+    margin: 4px;
+    font-size: 16px;
+}
+
+.task .tarefa-check {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.task .tarefa-conteudo {
+    width: 250px;
+}
+
+.task .progress {
+    width: 16px;
+    height: 16px;
+    margin-right: 10px;
+    cursor: pointer;
+    display: flex;
+    
+}
+
+.task .progress.done + .tarefa-descricao {
+    text-decoration: line-through;
+    color: #455154a7;
+}
+
+.task .tarefa-titulo,
+.task .tarefa-descricao {
+    display: inline-block;
+    vertical-align: top;
+    margin-right: 10px;
+}
+
+.task .tarefa-titulo {
+    text-transform: uppercase;
+    font-size: 16px;
+    font-weight: bold;
+    color: #000000;
+    padding: 4px 0px;
+    width: 100%;
+}
+
+.task .tarefa-descricao {
+    word-wrap: break-word;
+    font-size: 16px;
+    color: #969696;
+    padding: 4px 4px 4px 0px;
+}
+
+.task .tarefa-acoes {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    gap: 10px;
+}
+
+/* botões de ação */
+
+.tarefa-acoes .button-acoes:hover {
+    cursor: pointer;
+    scale: 1.1;
+}
+
+.button-acoes {
+  font-size: 16px;
+}
+
+.button-acoes.button-edit {
+    color: #09246c;
+}
+
+.button-acoes.button-delete {
+    color: #ff0000;
+}  
+
+.hidden {
+    display: none !important; 
+}
+
+/* responsividade */
+
+@media screen and (max-width: 600px) {
+    #to_do {
+        width: 300px;
+    }
+}
+
+/* estilo do filtro */
+
+.form-status {
+    display: flex;
+    gap: 10px;
+}
+
+.form-status select {
+    padding: 8px;
+    border: 1px solid #09246c;
+    border-radius: 6px;
+    background-color:transparent;
+    color: #333;
+    font-size: 14px;
+    cursor: pointer;
+    transition: border-color 0.3s ease-in-out;
+}
+
+.form-status select:focus-visible {
+    border-color: #1b3258;
+    outline: none;
+}
+
+.form-status select option {
+    background-color: #e4e0ff;
+    color: #333;
+}
