@@ -35,23 +35,51 @@ Esta é uma aplicação de lista de tarefas construída com PHP, MySQL, HTML, CS
 
 3. **Configure o arquivo de conexão com o banco de dados (`database/conn2.php`):**
     ```php
-    <?php
-    class Database {
-        private $host = 'localhost';
-        private $db_name = 'seu-banco-de-dados';
-        private $username = 'seu-usuario';
-        private $password = 'sua-senha';
-        public $conn;
+     <?php 
 
-        public function getPdo() {
-            $this->conn = null;
+    // conexão com o banco de dados
+    class Database {
+        private string $host;
+        private string $database;
+        private string $user;
+        private string $password;
+
+        private PDO $pdo;
+        public function __construct() {
+            $this->host = 'localhost';
+            $this->database = 'to_do_list';
+            $this->user = 'root';
+            $this->password = '';
+
+            $this->connect();
+        }
+
+    
+
+        private function connect() {
             try {
-                $this->conn = new PDO("mysql:host=" . $this->host . ";dbname=" . $this->db_name, $this->username, $this->password);
-                $this->conn->exec("set names utf8");
-            } catch(PDOException $exception) {
-                echo "Connection error: " . $exception->getMessage();
+                $str = sprintf('mysql:host=%s;dbname=%s', $this->host, $this->database);
+    
+                $this->pdo = new PDO($str, $this->user, $this->password);
+    
+                $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            } catch (PDOException $ex) {
+                print_r($ex->getMessage());
+                die();
             }
-            return $this->conn;
+        }
+
+        public function query(string $str, array $params)
+        {
+            $stmt = $this->pdo->prepare($str);
+
+            $stmt->execute($params);
+
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        }
+    
+        public function getPdo(): PDO {
+            return $this->pdo;
         }
     }
     ```
